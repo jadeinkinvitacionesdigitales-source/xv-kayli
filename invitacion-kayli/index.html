@@ -53,28 +53,18 @@ a { color: inherit; }
 
 /* Portada */
 .portada {
-  position: fixed; inset: 0 auto 0 50%; z-index: 20;
-  width: var(--ancho); height: 100svh;
-  transform: translateX(-50%);
-  background: url(assets/fondo.jpg) center / cover no-repeat;
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  padding: 16.5svh calc(var(--ancho) * .16) 0;
-  overflow-y: auto;
+  position: fixed; inset: 0; z-index: 20;
+  background: #e9c9c4;
+  display: flex; justify-content: center;
   transition: opacity .9s ease, visibility .9s;
 }
 .portada.abierta { opacity: 0; visibility: hidden; }
-.portada h1 { font-size: 7.6svh; position: relative; }
-.subraya { width: 86%; height: 2px; margin: .4svh auto 1.2svh; background: var(--rosa); border-radius: 2px; transform: rotate(-1deg); }
-.portada .lema { font-weight: 700; font-size: 1.75svh; line-height: 1.5; margin: 0; }
-.portada .xv { font-size: 13.5svh; line-height: 1; margin: .2svh 0 0; }
-.portada .divisor { margin: .6svh auto; width: 56%; }
-.portada .anos { font-weight: 700; font-size: 1.75svh; margin: 0; }
-.nombre { position: relative; display: inline-block; }
-.nombre img { position: absolute; left: -.62em; top: -.12em; width: .68em; transform: rotate(-8deg); }
-.portada .nombre { font-size: 8.4svh; margin-top: .4svh; }
-.portada .apellido { font-size: 6.4svh; margin-top: -.6svh; }
-.fecha { color: var(--rosa); font-size: 7.4svh; line-height: 1; margin: .6svh 0 0; }
-.portada .mes { font-weight: 700; font-size: 1.75svh; margin: 0 0 1.6svh; }
+.portada video {
+  width: min(100vw, calc(100svh * .5625)); height: 100svh;
+  object-fit: cover;
+  box-shadow: 0 0 60px rgba(120, 70, 60, .35);
+}
+.portada .boton { position: absolute; left: 50%; bottom: calc(4.5svh + env(safe-area-inset-bottom)); transform: translateX(-50%); white-space: nowrap; }
 
 .boton {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -184,17 +174,8 @@ dialog img { max-width: 94vw; max-height: 94svh; border: 1px solid var(--oro-cla
 <body class="cerrada">
 <div class="fondo" aria-hidden="true"></div>
 
-<section class="portada" id="portada">
-  <h1 class="script">Te invitamos</h1>
-  <div class="subraya"></div>
-  <p class="lema">Con gran alegría celebramos los</p>
-  <p class="xv serif">XV</p>
-  <img class="divisor" src="assets/divisor.png" alt="">
-  <p class="anos">Años de</p>
-  <p class="script nombre"><img src="assets/corona.png" alt="">Kayli</p>
-  <p class="script apellido">A. Núñez S.</p>
-  <p class="fecha serif">20</p>
-  <p class="mes">De febrero de 2027</p>
+<section class="portada" id="portada" aria-label="XV años de Kayli A. Núñez S.">
+  <video id="video-portada" src="assets/portada.mp4" poster="assets/portada.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
   <button class="boton" id="abrir" type="button">Abrir invitación</button>
 </section>
 
@@ -218,7 +199,7 @@ dialog img { max-width: 94vw; max-height: 94svh; border: 1px solid var(--oro-cla
     <img class="divisor" src="assets/divisor.png" alt="">
     <div class="dato"><b>Fecha</b><div>Sábado, 20 de febrero de 2027</div></div>
     <div class="dato"><b>Hora</b><div>5:30 p. m.</div></div>
-    <div class="dato"><b>Lugar</b><div>Playa Blanca Resort<br>Salón Velero</div></div>
+    <div class="dato"><b>Lugar</b><div>Playa Blanca Resort<br>Salón Velero (al aire libre)</div></div>
     <div class="dato"><b>Dirección</b><div>Residencial Playa Blanca</div></div>
     <div class="acciones">
       <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Playa+Blanca+Resort+Panam%C3%A1" target="_blank" rel="noopener">
@@ -242,6 +223,12 @@ dialog img { max-width: 94vw; max-height: 94svh; border: 1px solid var(--oro-cla
     <div class="acciones">
       <a class="boton" href="https://drive.google.com/drive/folders/1WUjQynIOocLkA738F3IX2O2hIK3BxRMW?usp=sharing" target="_blank" rel="noopener">Sube tus fotos</a>
     </div>
+  </section>
+
+  <section class="panel" id="carino">
+    <h2 class="script">Muestra de cariño</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <p><strong>Lluvia de sobres</strong></p>
   </section>
 
   <section class="panel" id="reservado" hidden>
@@ -335,8 +322,15 @@ var api = document.createElement('script');
 api.src = 'https://www.youtube.com/iframe_api';
 document.head.appendChild(api);
 
+var videoPortada = document.getElementById('video-portada');
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  videoPortada.removeAttribute('autoplay');
+  videoPortada.pause();
+}
+
 document.getElementById('abrir').addEventListener('click', function () {
   document.getElementById('portada').classList.add('abierta');
+  videoPortada.pause();
   document.body.classList.remove('cerrada');
   musica.classList.add('visible');
   sonar = true;
