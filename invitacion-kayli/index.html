@@ -58,7 +58,8 @@ a { color: inherit; }
   transform: translateX(-50%);
   background: url(assets/fondo.jpg) center / cover no-repeat;
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  padding: 16.5svh 16% 0;
+  padding: 16.5svh calc(var(--ancho) * .16) 0;
+  overflow-y: auto;
   transition: opacity .9s ease, visibility .9s;
 }
 .portada.abierta { opacity: 0; visibility: hidden; }
