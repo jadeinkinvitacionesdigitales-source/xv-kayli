@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Panel XV Kayli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Ms+Madi&display=swap" rel="stylesheet">
+<style>
+:root {
+  --tinta: #141210;
+  --suave: #6a5c52;
+  --rosa: #e6789f;
+  --rosa-texto: #b53d6c;
+  --rosa-claro: #fbe7ea;
+  --oro: #b8893b;
+  --oro-texto: #8a6427;
+  --linea: #ead9bd;
+  --crema: #fff9f0;
+  --verde: #2f7a57;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh;
+  background: #f7ecdc;
+  color: var(--tinta);
+  font: 15px/1.6 "Libre Baskerville", Georgia, serif;
+}
+[hidden] { display: none !important; }
+.contenedor { max-width: 860px; margin: 0 auto; padding: 20px 16px 48px; }
+h1 { font: 400 44px/1.1 "Ms Madi", cursive; margin: 0; -webkit-text-stroke: .3px currentColor; }
+h2 { font-size: 15px; margin: 28px 0 10px; }
+.tarjeta { background: var(--crema); border: 1px solid var(--linea); border-radius: 8px; padding: 18px; }
+.boton {
+  min-height: 42px; padding: 8px 16px;
+  border: 1px solid var(--oro); border-radius: 999px;
+  background: linear-gradient(180deg, #fff6ea, #f8dfe0);
+  color: var(--tinta); font: 700 13px/1.3 "Libre Baskerville", Georgia, serif;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.boton:disabled { opacity: .6; cursor: wait; }
+.boton.chico { min-height: 36px; padding: 5px 12px; font-size: 12px; }
+.boton.peligro { border-color: #c98a8a; color: #9c2f2f; background: #fff; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
+label { display: block; font-size: 12px; font-weight: 700; color: var(--oro-texto); margin-bottom: 4px; }
+input {
+  width: 100%; padding: 10px 12px;
+  border: 1px solid var(--oro); border-radius: 6px; background: #fff;
+  color: var(--tinta); font: 16px/1.4 "Libre Baskerville", Georgia, serif;
+}
+.aviso { font-size: 13px; font-weight: 700; min-height: 1.4em; margin: 10px 0 0; color: var(--rosa-texto); }
+.aviso:empty { display: none; }
+
+#entrada { max-width: 380px; margin: 12vh auto 0; text-align: center; }
+#entrada .tarjeta { margin-top: 18px; text-align: left; }
+#entrada .boton { width: 100%; margin-top: 12px; }
+
+.cabecera { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.pestanas { display: flex; gap: 4px; border-bottom: 1px solid var(--oro); margin-bottom: 18px; }
+.pestanas button {
+  flex: 1; min-height: 46px; padding: 8px;
+  border: 1px solid transparent; border-bottom: 0; border-radius: 8px 8px 0 0;
+  background: none; color: var(--suave); cursor: pointer;
+  font: 700 14px/1.2 "Libre Baskerville", Georgia, serif;
+}
+.pestanas button[aria-selected="true"] { background: var(--crema); border-color: var(--oro); color: var(--tinta); margin-bottom: -1px; }
+
+.resumen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.cifra { background: var(--crema); border: 1px solid var(--linea); border-radius: 8px; padding: 12px 8px; text-align: center; }
+.cifra b { display: block; font-size: 26px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.cifra span { font-size: 11.500px; color: var(--suave); line-height: 1.3; display: block; }
+.cifra.si b { color: var(--verde); }
+.cifra.no b { color: var(--rosa-texto); }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.filtros button {
+  min-height: 36px; padding: 4px 12px; border-radius: 999px;
+  border: 1px solid var(--linea); background: #fff; color: var(--tinta);
+  font: 12px "Libre Baskerville", Georgia, serif; cursor: pointer;
+}
+.filtros button[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: #fff; }
+
+.lista { list-style: none; margin: 0; padding: 0; background: var(--crema); border: 1px solid var(--linea); border-radius: 8px; }
+.lista li { padding: 12px 14px; border-top: 1px solid var(--linea); }
+.lista li:first-child { border-top: 0; }
+.fila { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.nombre { font-weight: 700; overflow-wrap: anywhere; }
+.detalle { font-size: 12px; color: var(--suave); }
+.marca { flex: none; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; background: #f1e8da; color: var(--suave); }
+.marca.si { background: #e1f1e8; color: var(--verde); }
+.marca.no { background: var(--rosa-claro); color: var(--rosa-texto); }
+.texto-mensaje { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.vacio { padding: 18px; text-align: center; color: var(--suave); font-size: 13px; background: var(--crema); border: 1px dashed var(--linea); border-radius: 8px; }
+
+.formulario { display: grid; grid-template-columns: 1fr 110px auto; gap: 10px; align-items: end; }
+.nuevo { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--linea); }
+.enlace { font-size: 12.500px; color: var(--suave); overflow-wrap: anywhere; margin: 2px 0 8px; }
+.botones { display: flex; flex-wrap: wrap; gap: 6px; }
+
+@media (max-width: 560px) {
+  .resumen { grid-template-columns: repeat(2, 1fr); }
+  .formulario { grid-template-columns: 1fr 90px; }
+  .formulario .boton { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+<div class="contenedor">
+  <section id="entrada">
+    <h1>Panel de los XV de Kayli</h1>
+    <form class="tarjeta" id="form-entrada">
+      <label for="clave">Clave del panel</label>
+      <input id="clave" type="password" autocomplete="current-password" required>
+      <button class="boton" type="submit">Entrar</button>
+      <p class="aviso" id="aviso-entrada" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="app" hidden>
+    <div class="cabecera">
+      <h1>XV de Kayli</h1>
+      <button class="boton chico" id="actualizar" type="button">Actualizar</button>
+    </div>
+    <p class="aviso" id="aviso-app" role="alert"></p>
+
+    <div class="pestanas" role="tablist" aria-label="Secciones del panel">
+      <button id="tab-respuestas" role="tab" aria-selected="true" aria-controls="vista-respuestas" type="button">Confirmaciones</button>
+      <button id="tab-enlaces" role="tab" aria-selected="false" aria-controls="vista-enlaces" type="button">Enlaces</button>
+    </div>
+
+    <div id="vista-respuestas" role="tabpanel" aria-labelledby="tab-respuestas">
+      <div class="resumen" id="resumen"></div>
+      <h2>Confirmaciones</h2>
+      <div class="filtros" id="filtros">
+        <button type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+        <button type="button" data-filtro="Sí" aria-pressed="false">Sí asistirán</button>
+        <button type="button" data-filtro="No" aria-pressed="false">No asistirán</button>
+        <button type="button" data-filtro="" aria-pressed="false">Sin responder</button>
+      </div>
+      <ul class="lista" id="lista-respuestas"></ul>
+      <div class="vacio" id="vacio-respuestas" hidden></div>
+      <h2>Mensajes para Kayli</h2>
+      <ul class="lista" id="lista-mensajes"></ul>
+      <div class="vacio" id="vacio-mensajes" hidden>Todavía no hay mensajes.</div>
+    </div>
+
+    <div id="vista-enlaces" role="tabpanel" aria-labelledby="tab-enlaces" hidden>
+      <div class="tarjeta">
+        <form class="formulario" id="form-enlace">
+          <div>
+            <label for="nuevo-nombre">Nombre del invitado o familia</label>
+            <input id="nuevo-nombre" type="text" maxlength="80" required>
+          </div>
+          <div>
+            <label for="nuevo-puestos">Puestos</label>
+            <input id="nuevo-puestos" type="number" min="1" max="50" step="1" value="2" required>
+          </div>
+          <button class="boton" type="submit">Crear enlace</button>
+        </form>
+        <div class="nuevo" id="enlace-nuevo" hidden></div>
+      </div>
+      <h2>Enlaces creados</h2>
+      <ul class="lista" id="lista-enlaces"></ul>
+      <div class="vacio" id="vacio-enlaces" hidden>Todavía no has creado enlaces.</div>
+    </div>
+  </section>
+</div>
+
+<script src="assets/config.js"></script>
+<script>
+var API = window.INVITACION && window.INVITACION.api;
+var clave = '';
+var datos = { invitados: [], mensajes: [] };
+var filtro = 'todos';
+var BASE = new URL('./', location.href).href;
+
+function $(id) { return document.getElementById(id); }
+
+function llamar(cuerpo) {
+  cuerpo.clave = clave;
+  return fetch(API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(cuerpo)
+  }).then(function (r) { return r.json(); });
+}
+
+function nodo(etiqueta, clase, contenido) {
+  var n = document.createElement(etiqueta);
+  if (clase) n.className = clase;
+  if (contenido !== undefined) n.textContent = contenido;
+  return n;
+}
+
+function plural(n) { return n + (n === 1 ? ' puesto' : ' puestos'); }
+function enlaceDe(i) { return BASE + '?i=' + i.codigo; }
+
+function textoWhatsapp(i) {
+  return 'Hola ' + i.nombre + ', te invitamos a los XV años de Kayli. Hemos reservado para ti ' +
+    plural(i.puestos) + '. Tu invitación: ' + enlaceDe(i);
+}
+
+function pintarResumen() {
+  var v = datos.invitados, conEnlace = v.filter(function (i) { return i.origen === 'Enlace'; });
+  function suma(l) { return l.reduce(function (t, i) { return t + (i.puestos || 1); }, 0); }
+  var cifras = [
+    ['', suma(conEnlace), 'Puestos reservados'],
+    ['si', suma(v.filter(function (i) { return i.respuesta === 'Sí'; })), 'Puestos confirmados'],
+    ['no', suma(v.filter(function (i) { return i.respuesta === 'No'; })), 'Puestos que no asistirán'],
+    ['', conEnlace.filter(function (i) { return !i.respuesta; }).length, 'Invitados sin responder']
+  ];
+  var r = $('resumen');
+  r.textContent = '';
+  cifras.forEach(function (c) {
+    var d = nodo('div', 'cifra ' + c[0]);
+    d.appendChild(nodo('b', '', c[1]));
+    d.appendChild(nodo('span', '', c[2]));
+    r.appendChild(d);
+  });
+}
+
+function pintarRespuestas() {
+  var lista = $('lista-respuestas');
+  lista.textContent = '';
+  var v = datos.invitados.filter(function (i) { return filtro === 'todos' || i.respuesta === filtro; });
+  v.forEach(function (i) {
+    var li = nodo('li'), f = nodo('div', 'fila'), izq = nodo('div');
+    izq.appendChild(nodo('div', 'nombre', i.nombre));
+    var partes = [];
+    if (i.puestos) partes.push(plural(i.puestos));
+    if (i.origen === 'Sin enlace') partes.push('Sin enlace');
+    if (i.fecha) partes.push(i.fecha);
+    izq.appendChild(nodo('div', 'detalle', partes.join(' · ')));
+    f.appendChild(izq);
+    var clase = i.respuesta === 'Sí' ? 'si' : i.respuesta === 'No' ? 'no' : '';
+    f.appendChild(nodo('span', 'marca ' + clase, i.respuesta || 'Sin responder'));
+    li.appendChild(f);
+    lista.appendChild(li);
+  });
+  lista.hidden = !v.length;
+  $('vacio-respuestas').hidden = !!v.length;
+  $('vacio-respuestas').textContent = datos.invitados.length ? 'No hay invitados en este filtro.' : 'Todavía no hay confirmaciones.';
+}
+
+function pintarMensajes() {
+  var lista = $('lista-mensajes');
+  lista.textContent = '';
+  datos.mensajes.forEach(function (m) {
+    var li = nodo('li'), f = nodo('div', 'fila');
+    f.appendChild(nodo('div', 'nombre', m.nombre));
+    f.appendChild(nodo('div', 'detalle', m.fecha));
+    li.appendChild(f);
+    li.appendChild(nodo('p', 'texto-mensaje', m.mensaje));
+    lista.appendChild(li);
+  });
+  lista.hidden = !datos.mensajes.length;
+  $('vacio-mensajes').hidden = !!datos.mensajes.length;
+}
+
+function botonesEnlace(i, contenedor) {
+  var enlace = enlaceDe(i);
+  var c = nodo('div', 'botones');
+  var copiar = nodo('button', 'boton chico', 'Copiar enlace');
+  copiar.type = 'button';
+  copiar.addEventListener('click', function () {
+    copiarTexto(enlace).then(function () {
+      copiar.textContent = '¡Copiado!';
+      setTimeout(function () { copiar.textContent = 'Copiar enlace'; }, 1800);
+    });
+  });
+  c.appendChild(copiar);
+  var wa = nodo('a', 'boton chico', 'Enviar por WhatsApp');
+  wa.href = 'https://wa.me/?text=' + encodeURIComponent(textoWhatsapp(i));
+  wa.target = '_blank';
+  wa.rel = 'noopener';
+  c.appendChild(wa);
+  contenedor.appendChild(c);
+  return c;
+}
+
+function copiarTexto(t) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+  var a = nodo('textarea');
+  a.value = t;
+  document.body.appendChild(a);
+  a.select();
+  document.execCommand('copy');
+  a.remove();
+  return Promise.resolve();
+}
+
+function pintarEnlaces() {
+  var lista = $('lista-enlaces');
+  lista.textContent = '';
+  var v = datos.invitados.filter(function (i) { return i.origen === 'Enlace'; }).reverse();
+  v.forEach(function (i) {
+    var li = nodo('li'), f = nodo('div', 'fila');
+    f.appendChild(nodo('div', 'nombre', i.nombre));
+    f.appendChild(nodo('span', 'marca', plural(i.puestos)));
+    li.appendChild(f);
+    li.appendChild(nodo('p', 'enlace', enlaceDe(i)));
+    var c = botonesEnlace(i, li);
+    var borrar = nodo('button', 'boton chico peligro', 'Eliminar');
+    borrar.type = 'button';
+    borrar.addEventListener('click', function () { eliminar(i, borrar); });
+    c.appendChild(borrar);
+    lista.appendChild(li);
+  });
+  lista.hidden = !v.length;
+  $('vacio-enlaces').hidden = !!v.length;
+}
+
+function pintar() { pintarResumen(); pintarRespuestas(); pintarMensajes(); pintarEnlaces(); }
+
+function aviso(t) { $('aviso-app').textContent = t || ''; }
+
+function cargar() {
+  var b = $('actualizar');
+  b.disabled = true;
+  return llamar({ accion: 'listar' }).then(function (r) {
+    if (!r.ok) throw new Error(r.error);
+    datos = r;
+    aviso('');
+    pintar();
+    return r;
+  }).catch(function (e) {
+    if (e.message === 'clave') throw e;
+    aviso('No se pudieron cargar los datos. Revisa tu conexión y toca Actualizar.');
+    throw e;
+  }).then(function (r) { b.disabled = false; return r; }, function (e) { b.disabled = false; throw e; });
+}
+
+function eliminar(i, boton) {
+  var extra = i.respuesta ? ' También se borrará su respuesta.' : '';
+  if (!confirm('¿Eliminar el enlace de ' + i.nombre + '? Dejará de funcionar.' + extra)) return;
+  boton.disabled = true;
+  llamar({ accion: 'eliminar', codigo: i.codigo }).then(function (r) {
+    if (!r.ok) throw new Error(r.error);
+    return cargar();
+  }).catch(function () {
+    boton.disabled = false;
+    aviso('No se pudo eliminar. Inténtalo de nuevo.');
+  });
+}
+
+$('form-entrada').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var b = e.target.querySelector('button'), av = $('aviso-entrada');
+  av.textContent = '';
+  if (!API) {
+    av.textContent = 'Falta pegar la URL de Apps Script en assets/config.js.';
+    return;
+  }
+  clave = $('clave').value;
+  b.disabled = true;
+  cargar().then(function () {
+    $('entrada').hidden = true;
+    $('app').hidden = false;
+  }).catch(function (err) {
+    av.textContent = err.message === 'clave' ? 'Clave incorrecta.' : 'No se pudo conectar. Inténtalo de nuevo.';
+    aviso('');
+  }).then(function () { b.disabled = false; });
+});
+
+$('actualizar').addEventListener('click', function () { cargar().catch(function () {}); });
+
+['respuestas', 'enlaces'].forEach(function (n, x, todas) {
+  $('tab-' + n).addEventListener('click', function () {
+    todas.forEach(function (o) {
+      $('tab-' + o).setAttribute('aria-selected', o === n ? 'true' : 'false');
+      $('vista-' + o).hidden = o !== n;
+    });
+  });
+});
+
+$('filtros').addEventListener('click', function (e) {
+  var b = e.target.closest('button');
+  if (!b) return;
+  filtro = b.dataset.filtro;
+  this.querySelectorAll('button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+  pintarRespuestas();
+});
+
+$('form-enlace').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var b = e.target.querySelector('button');
+  var i = { nombre: $('nuevo-nombre').value.trim(), puestos: Number($('nuevo-puestos').value) };
+  if (!i.nombre) return;
+  b.disabled = true;
+  llamar({ accion: 'crear', nombre: i.nombre, puestos: i.puestos }).then(function (r) {
+    if (!r.ok) throw new Error(r.error);
+    i.codigo = r.codigo;
+    var n = $('enlace-nuevo');
+    n.textContent = '';
+    n.appendChild(nodo('div', 'nombre', 'Enlace listo para ' + i.nombre + ' · ' + plural(i.puestos)));
+    n.appendChild(nodo('p', 'enlace', enlaceDe(i)));
+    botonesEnlace(i, n);
+    n.hidden = false;
+    e.target.reset();
+    return cargar();
+  }).catch(function () {
+    aviso('No se pudo crear el enlace. Inténtalo de nuevo.');
+  }).then(function () { b.disabled = false; });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>XV Años de Kayli</title>
+<meta name="description" content="Invitación a los XV años de Kayli A. Núñez S. · 20 de febrero de 2027">
+<meta property="og:title" content="XV Años de Kayli">
+<meta property="og:description" content="Sábado 20 de febrero de 2027 · 5:30 p. m. · Playa Blanca Resort">
+<meta property="og:image" content="assets/principal.jpg">
+<meta name="theme-color" content="#eebfc4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ms+Madi&family=Tinos:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --tinta: #141210;
+  --suave: #4b4038;
+  --rosa: #e6789f;
+  --rosa-claro: #f6d3d8;
+  --oro: #b8893b;
+  --oro-claro: #e4c88b;
+  --crema: #fff9f0;
+  --ancho: min(100vw, calc(100svh * .664));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #e9c9c4;
+  color: var(--tinta);
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.75;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+}
+body.cerrada { overflow: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+.fondo {
+  position: fixed; inset: 0 auto 0 50%; z-index: -1;
+  width: var(--ancho); height: 100svh;
+  transform: translateX(-50%);
+  background: url(assets/fondo.jpg) center / cover no-repeat;
+  box-shadow: 0 0 60px rgba(120, 70, 60, .35);
+}
+
+.script { font-family: "Ms Madi", cursive; font-weight: 400; -webkit-text-stroke: .3px currentColor; line-height: 1.05; margin: 0; }
+.serif { font-family: Tinos, "Times New Roman", serif; font-weight: 700; }
+.divisor { width: 62%; max-width: 250px; margin: 10px auto; }
+
+/* Portada */
+.portada {
+  position: fixed; inset: 0 auto 0 50%; z-index: 20;
+  width: var(--ancho); height: 100svh;
+  transform: translateX(-50%);
+  background: url(assets/fondo.jpg) center / cover no-repeat;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  padding: 16.5svh 16% 0;
+  transition: opacity .9s ease, visibility .9s;
+}
+.portada.abierta { opacity: 0; visibility: hidden; }
+.portada h1 { font-size: 7.6svh; position: relative; }
+.subraya { width: 86%; height: 2px; margin: .4svh auto 1.2svh; background: var(--rosa); border-radius: 2px; transform: rotate(-1deg); }
+.portada .lema { font-weight: 700; font-size: 1.75svh; line-height: 1.5; margin: 0; }
+.portada .xv { font-size: 13.5svh; line-height: 1; margin: .2svh 0 0; }
+.portada .divisor { margin: .6svh auto; width: 56%; }
+.portada .anos { font-weight: 700; font-size: 1.75svh; margin: 0; }
+.nombre { position: relative; display: inline-block; }
+.nombre img { position: absolute; left: -.62em; top: -.12em; width: .68em; transform: rotate(-8deg); }
+.portada .nombre { font-size: 8.4svh; margin-top: .4svh; }
+.portada .apellido { font-size: 6.4svh; margin-top: -.6svh; }
+.fecha { color: var(--rosa); font-size: 7.4svh; line-height: 1; margin: .6svh 0 0; }
+.portada .mes { font-weight: 700; font-size: 1.75svh; margin: 0 0 1.6svh; }
+
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 46px; padding: 10px 22px;
+  border: 1px solid var(--oro); border-radius: 999px;
+  background: linear-gradient(180deg, #fff6ea, #f8dfe0);
+  color: var(--tinta);
+  font: 700 13px/1.3 "Libre Baskerville", Georgia, serif;
+  text-decoration: none; cursor: pointer;
+  box-shadow: 0 3px 12px rgba(150, 100, 60, .22);
+}
+.boton:hover { background: linear-gradient(180deg, #fff, #f6d3d8); }
+.boton:focus-visible, .musica:focus-visible, .foto-suelta:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
+.boton svg { width: 17px; height: 17px; flex: none; }
+
+/* Contenido */
+main { width: var(--ancho); max-width: 100%; margin: 0 auto; padding: 15svh 16px 13svh; }
+.panel {
+  position: relative;
+  margin: 0 auto 22px; padding: 28px 22px;
+  max-width: 420px;
+  background: rgba(255, 249, 240, .9);
+  border: 1px solid var(--oro);
+  outline: 1px solid var(--oro-claro); outline-offset: -6px;
+  border-radius: 4px;
+  box-shadow: 0 8px 26px rgba(130, 85, 60, .16);
+}
+.panel h2 { font-size: 46px; margin-bottom: 6px; }
+.panel p { margin: 0 0 12px; color: var(--suave); }
+.panel p:last-child { margin-bottom: 0; }
+.panel strong { color: var(--tinta); }
+
+.arco {
+  width: 82%; max-width: 330px; margin: 0 auto 18px;
+  aspect-ratio: 4 / 5;
+  padding: 5px; border: 1px solid var(--oro);
+  border-radius: 180px 180px 6px 6px;
+  background: var(--crema);
+  box-shadow: 0 10px 28px rgba(130, 85, 60, .28);
+}
+.arco img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; border-radius: 175px 175px 3px 3px; }
+.frase { font-style: italic; }
+
+.dato { margin-bottom: 14px; }
+.dato b { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #8a6427; font-weight: 700; }
+.dato div { color: var(--tinta); font-size: 16px; line-height: 1.5; }
+.acciones { display: flex; flex-direction: column; gap: 10px; align-items: center; margin-top: 16px; }
+.acciones[hidden] { display: none; }
+.acciones p { margin: 0; }
+.respuestas { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+.boton[aria-pressed="true"] { background: var(--rosa); border-color: var(--rosa); color: #fff; }
+
+.foto-suelta {
+  display: block; width: 86%; max-width: 350px; margin: 0 auto 22px; padding: 6px;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--oro); border-radius: 180px 180px 6px 6px;
+  background: var(--crema); cursor: zoom-in;
+  box-shadow: 0 10px 28px rgba(130, 85, 60, .3);
+}
+.foto-suelta img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; border-radius: 175px 175px 3px 3px; }
+
+.subir { margin-top: 18px !important; }
+
+.panel[hidden], .campo[hidden] { display: none; }
+.panel .res-nombre { font-size: 36px; color: var(--tinta); margin: 6px 0 0; }
+.panel .res-numero { font-size: 76px; line-height: 1; color: var(--rosa); margin: 6px 0 0; }
+.panel .res-texto { font-weight: 700; color: var(--tinta); }
+.campo { margin: 12px 0; text-align: left; }
+.campo label { display: block; font-size: 12px; font-weight: 700; color: #8a6427; margin-bottom: 4px; }
+.campo input, .campo textarea {
+  width: 100%; padding: 10px 12px;
+  border: 1px solid var(--oro); border-radius: 6px;
+  background: #fff; color: var(--tinta);
+  font: 16px/1.5 "Libre Baskerville", Georgia, serif;
+}
+.campo textarea { resize: vertical; }
+.campo input:focus-visible, .campo textarea:focus-visible { outline: 2px solid var(--rosa); outline-offset: 1px; }
+.estado { min-height: 1.4em; margin: 12px 0 0 !important; font-size: 13px; font-weight: 700; }
+.estado:empty { display: none; }
+.boton:disabled { opacity: .6; cursor: wait; }
+
+.anfitriones { margin-top: 14px; font-size: 30px; color: var(--tinta); }
+.etiqueta { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #8a6427; font-weight: 700; margin-top: 16px !important; margin-bottom: 0 !important; }
+
+dialog { padding: 0; border: 0; background: none; max-width: 94vw; max-height: 94svh; }
+dialog::backdrop { background: rgba(35, 20, 18, .85); }
+dialog img { max-width: 94vw; max-height: 94svh; border: 1px solid var(--oro-claro); }
+
+.musica {
+  position: fixed; z-index: 30; right: max(12px, calc(50vw - var(--ancho) / 2 + 12px)); bottom: calc(14px + env(safe-area-inset-bottom));
+  width: 46px; height: 46px; padding: 0; border-radius: 50%;
+  border: 1px solid var(--oro); background: var(--crema); color: #a8752c; cursor: pointer;
+  display: none; place-items: center;
+  box-shadow: 0 3px 12px rgba(100, 60, 40, .3);
+}
+.musica.visible { display: grid; }
+.musica svg { width: 21px; height: 21px; }
+.musica[aria-pressed="false"] { opacity: .65; }
+#reproductor { position: fixed; left: -500px; bottom: 0; width: 200px; height: 200px; opacity: 0; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .portada { transition: none; }
+}
+</style>
+</head>
+<body class="cerrada">
+<div class="fondo" aria-hidden="true"></div>
+
+<section class="portada" id="portada">
+  <h1 class="script">Te invitamos</h1>
+  <div class="subraya"></div>
+  <p class="lema">Con gran alegría celebramos los</p>
+  <p class="xv serif">XV</p>
+  <img class="divisor" src="assets/divisor.png" alt="">
+  <p class="anos">Años de</p>
+  <p class="script nombre"><img src="assets/corona.png" alt="">Kayli</p>
+  <p class="script apellido">A. Núñez S.</p>
+  <p class="fecha serif">20</p>
+  <p class="mes">De febrero de 2027</p>
+  <button class="boton" id="abrir" type="button">Abrir invitación</button>
+</section>
+
+<main id="contenido">
+  <section class="panel">
+    <div class="arco"><img src="assets/principal.jpg" alt="Kayli con vestido rosa y corona"></div>
+    <h2 class="script" style="font-size:clamp(24px,10vw,44px);white-space:nowrap">Kayli A. Núñez S.</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <p class="frase">Nos honraría compartir con ustedes esta noche tan especial, dando gracias a Dios por su vida y por las bendiciones que aún están por venir.</p>
+  </section>
+
+  <section class="panel">
+    <p>Hay regalos que vienen del cielo y bendiciones que llenan el corazón para toda la vida. Para nosotros, Kayli es una de las más hermosas.</p>
+    <p>Con el amor que nos une y el corazón rebosante de gratitud a Dios por permitirnos verla crecer, la Familia Núñez Serrano les invita a celebrar los XV años de nuestra amada <strong>Kayli A. Núñez S.</strong></p>
+  </section>
+
+  <button class="foto-suelta" type="button" data-foto="assets/foto-1.jpg" aria-label="Ampliar foto de Kayli en el jardín"><img src="assets/foto-1.jpg" alt="Kayli en un jardín con vestido rosa" loading="lazy"></button>
+
+  <section class="panel" id="ubicacion">
+    <h2 class="script">Te esperamos</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <div class="dato"><b>Fecha</b><div>Sábado, 20 de febrero de 2027</div></div>
+    <div class="dato"><b>Hora</b><div>5:30 p. m.</div></div>
+    <div class="dato"><b>Lugar</b><div>Playa Blanca Resort<br>Salón Velero</div></div>
+    <div class="dato"><b>Dirección</b><div>Residencial Playa Blanca</div></div>
+    <div class="acciones">
+      <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Playa+Blanca+Resort+Panam%C3%A1" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.500C5 14.800 12 21 12 21Z"/><circle cx="12" cy="9.500" r="2.500"/></svg>
+        Ver ubicación</a>
+    </div>
+  </section>
+
+  <section class="panel" id="vestimenta">
+    <h2 class="script">Dress code</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <p><strong>Beach Formal</strong><br>Elegancia frente al mar.</p>
+  </section>
+
+  <button class="foto-suelta" type="button" data-foto="assets/foto-2.jpg" aria-label="Ampliar foto de Kayli frente al mar"><img src="assets/foto-2.jpg" alt="Kayli frente al mar" loading="lazy"></button>
+
+  <section class="panel" id="galeria">
+    <h2 class="script">Galería de fotos</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <p class="subir">Quiero ver mis XV a través de tus ojos, comparte la magia de mi gran día en el siguiente enlace.</p>
+    <div class="acciones">
+      <a class="boton" href="https://drive.google.com/drive/folders/1WUjQynIOocLkA738F3IX2O2hIK3BxRMW?usp=sharing" target="_blank" rel="noopener">Sube tus fotos</a>
+    </div>
+  </section>
+
+  <section class="panel" id="reservado" hidden>
+    <h2 class="script">Hemos reservado para ti</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <p class="script res-nombre" id="res-nombre"></p>
+    <p class="res-numero serif" id="res-numero"></p>
+    <p class="res-texto" id="res-texto"></p>
+  </section>
+
+  <section class="panel" id="confirmar">
+    <h2 class="script">Confirma tu asistencia</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <p>Para nosotros será un honor contar con tu presencia.</p>
+    <div class="campo" id="campo-nombre" hidden>
+      <label for="conf-nombre">Tu nombre</label>
+      <input id="conf-nombre" type="text" maxlength="80" autocomplete="name">
+    </div>
+    <div class="acciones respuestas">
+      <button class="boton" type="button" aria-pressed="false" data-valor="si" data-respuesta="sí podré asistir">Sí podré asistir</button>
+      <button class="boton" type="button" aria-pressed="false" data-valor="no" data-respuesta="no podré asistir">No podré asistir</button>
+    </div>
+    <p class="estado" id="conf-estado" role="status"></p>
+    <div class="acciones" id="enviar" hidden>
+      <p>Envía tu respuesta por WhatsApp:</p>
+      <a class="boton" data-numero="50768411687" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.300-4.200A8 8 0 1 1 8.400 18.800L4 20Z"/></svg>
+        WhatsApp 6841-1687</a>
+      <a class="boton" data-numero="50764211200" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.300-4.200A8 8 0 1 1 8.400 18.800L4 20Z"/></svg>
+        WhatsApp 6421-1200</a>
+    </div>
+  </section>
+
+  <button class="foto-suelta" type="button" data-foto="assets/foto-3.jpg" aria-label="Ampliar foto de Kayli en estudio"><img src="assets/foto-3.jpg" alt="Kayli sentada con vestido rosa corto" loading="lazy"></button>
+
+  <section class="panel" id="mensaje" hidden>
+    <h2 class="script">Déjale un mensaje a la quinceañera</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <form id="form-mensaje">
+      <div class="campo">
+        <label for="msg-nombre">Tu nombre</label>
+        <input id="msg-nombre" type="text" maxlength="80" autocomplete="name" required>
+      </div>
+      <div class="campo">
+        <label for="msg-texto">Tu mensaje para Kayli</label>
+        <textarea id="msg-texto" rows="4" maxlength="500" required></textarea>
+      </div>
+      <button class="boton" type="submit">Enviar mensaje</button>
+      <p class="estado" id="msg-estado" role="status"></p>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2 class="script">Gracias</h2>
+    <img class="divisor" src="assets/divisor.png" alt="">
+    <p>Damos gracias a Dios por el regalo de la vida de Kayli, por cada paso que la ha traído hasta aquí y por el privilegio de verla crecer. Que su amor siga guiando su camino y que nunca le falten fe, esperanza y sueños por cumplir.</p>
+    <p>Gracias por acompañarnos y ser parte de este capítulo tan hermoso de su historia.</p>
+    <p class="etiqueta">Anfitriones</p>
+    <p class="script anfitriones">Amilcar, Leydi y Kadyel</p>
+  </section>
+</main>
+
+<dialog id="visor" aria-label="Foto ampliada"><img alt=""></dialog>
+
+<button class="musica" id="musica" type="button" aria-pressed="false" aria-label="Música: Bailando Contigo, de Marcos Yaroide">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 18V6l10-2v12"/><circle cx="6.500" cy="18" r="2.500"/><circle cx="16.500" cy="16" r="2.500"/></svg>
+</button>
+<div id="reproductor" aria-hidden="true"></div>
+
+<script src="assets/config.js"></script>
+<script>
+var VIDEO = 'ql8P2m8uBg4';
+var player, listo = false, sonar = false;
+var musica = document.getElementById('musica');
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('reproductor', {
+    width: 200, height: 200, videoId: VIDEO,
+    playerVars: { controls: 0, disablekb: 1, fs: 0, playsinline: 1, loop: 1, playlist: VIDEO, rel: 0 },
+    events: {
+      onReady: function () { listo = true; if (sonar) player.playVideo(); },
+      onStateChange: function (e) {
+        var suena = e.data === YT.PlayerState.PLAYING;
+        musica.setAttribute('aria-pressed', suena ? 'true' : 'false');
+      }
+    }
+  });
+}
+var api = document.createElement('script');
+api.src = 'https://www.youtube.com/iframe_api';
+document.head.appendChild(api);
+
+document.getElementById('abrir').addEventListener('click', function () {
+  document.getElementById('portada').classList.add('abierta');
+  document.body.classList.remove('cerrada');
+  musica.classList.add('visible');
+  sonar = true;
+  if (listo) player.playVideo();
+});
+
+musica.addEventListener('click', function () {
+  if (!listo) return;
+  if (player.getPlayerState() === YT.PlayerState.PLAYING) { sonar = false; player.pauseVideo(); }
+  else { sonar = true; player.playVideo(); }
+});
+
+var API = window.INVITACION && window.INVITACION.api;
+var invitado = null;
+var codigo = (new URLSearchParams(location.search).get('i') || '').toUpperCase();
+var respuestas = document.querySelectorAll('[data-respuesta]');
+var confNombre = document.getElementById('conf-nombre');
+var confEstado = document.getElementById('conf-estado');
+
+function guardar(datos) {
+  return fetch(API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(datos)
+  }).then(function (r) { return r.json(); });
+}
+
+function prepararWhatsapp(respuesta, nombre) {
+  var texto = encodeURIComponent('Hola, ' + (nombre ? 'soy ' + nombre + ', ' : '') + respuesta + ' a los XV años de Kayli.');
+  document.querySelectorAll('[data-numero]').forEach(function (a) {
+    a.href = 'https://wa.me/' + a.dataset.numero + '?text=' + texto;
+  });
+  document.getElementById('enviar').hidden = false;
+}
+
+function marcar(boton) {
+  respuestas.forEach(function (o) { o.setAttribute('aria-pressed', o === boton ? 'true' : 'false'); });
+}
+
+respuestas.forEach(function (b) {
+  b.addEventListener('click', function () {
+    var nombre = invitado ? invitado.nombre : confNombre.value.trim();
+    if (API && !nombre) {
+      confEstado.textContent = 'Escribe tu nombre para confirmar.';
+      confNombre.focus();
+      return;
+    }
+    marcar(b);
+    prepararWhatsapp(b.dataset.respuesta, nombre);
+    if (!API) return;
+    confEstado.textContent = 'Guardando tu respuesta…';
+    guardar({ accion: 'confirmar', codigo: invitado ? codigo : '', nombre: nombre, respuesta: b.dataset.valor })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.error);
+        confEstado.textContent = '¡Gracias! Tu respuesta quedó registrada.';
+      })
+      .catch(function () {
+        confEstado.textContent = 'No pudimos guardar tu respuesta. Avísanos por WhatsApp.';
+      });
+  });
+});
+
+function mostrarInvitado(datos) {
+  invitado = datos;
+  document.getElementById('res-nombre').textContent = datos.nombre;
+  document.getElementById('res-numero').textContent = datos.puestos;
+  document.getElementById('res-texto').textContent = datos.puestos === 1 ? 'puesto' : 'puestos';
+  document.getElementById('reservado').hidden = false;
+  document.getElementById('campo-nombre').hidden = true;
+  document.getElementById('msg-nombre').value = datos.nombre;
+  if (datos.respuesta) {
+    var valor = datos.respuesta === 'Sí' ? 'si' : 'no';
+    var boton = document.querySelector('[data-valor="' + valor + '"]');
+    marcar(boton);
+    prepararWhatsapp(boton.dataset.respuesta, datos.nombre);
+    confEstado.textContent = 'Ya tenemos tu respuesta. Puedes cambiarla si lo necesitas.';
+  }
+}
+
+if (API) {
+  document.getElementById('mensaje').hidden = false;
+  document.getElementById('campo-nombre').hidden = false;
+  if (/^[A-Z]{6}$/.test(codigo)) {
+    fetch(API + '?accion=invitado&i=' + codigo)
+      .then(function (r) { return r.json(); })
+      .then(function (r) { if (r.ok) mostrarInvitado(r); })
+      .catch(function () {});
+  }
+}
+
+document.getElementById('form-mensaje').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var boton = e.target.querySelector('button');
+  var estado = document.getElementById('msg-estado');
+  var texto = document.getElementById('msg-texto');
+  boton.disabled = true;
+  estado.textContent = 'Enviando tu mensaje…';
+  guardar({
+    accion: 'mensaje',
+    codigo: invitado ? codigo : '',
+    nombre: document.getElementById('msg-nombre').value,
+    mensaje: texto.value
+  }).then(function (r) {
+    if (!r.ok) throw new Error(r.error);
+    texto.value = '';
+    estado.textContent = '¡Gracias! Kayli recibirá tu mensaje.';
+  }).catch(function () {
+    estado.textContent = 'No pudimos enviar tu mensaje. Inténtalo de nuevo.';
+  }).then(function () {
+    boton.disabled = false;
+  });
+});
+
+var visor = document.getElementById('visor');
+document.querySelectorAll('[data-foto]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    visor.querySelector('img').src = b.dataset.foto;
+    visor.showModal();
+  });
+});
+visor.addEventListener('click', function () { visor.close(); });
+</script>
+</body>
+</html>
